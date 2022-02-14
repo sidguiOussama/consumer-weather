@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+    <form action="/search" method="POST">
+        <label>Veuillez saisir une ville:</label>
+        <input type="text" name="city" id="city">
+        <input type="submit" value="ok">
+    </form>
+   
+    <h2>Voici l ensemble des informations qui concernent la ville de {{city}} : </h2><br>
+    {%for s in name %}
+        <div class="card-body">
+            <h6 class="card-title">nom : {{ s.name }}</h6>
+            <h6 class="card-title">lat : {{ s.lat }}</h6>
+            <h6 class="card-title">long : {{ s.lon }}</h6>
+            <p>-----------------------------------------------------------------------</p>
+        </div>
+    {%endfor%}
+
+  
+{% endblock %}

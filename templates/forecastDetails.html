@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+{% if name %}
+
+    <div class="row row-cols-1 row-cols-md-2">
+    {%for time in name.hour %}
+        <div class="col mb-4">
+            <div class="card rounded bg-light">
+                <div class="row mt-2">
+                    <div class="col-4"> 
+                        <div class="m-1 text-center">
+                            <img style="width: 50%;" src={{ time.condition.icon }} >
+                        </div>
+                    
+                    </div>
+                    
+                    <div class="col-6">
+                        <div class="text-center">
+                            <h1 class="text-primary">{{time.temp_c }} °C / {{time.temp_f }} °F </h1>
+                            <h3 class="text-dark">{{time.time}}</h3>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="bg-dark mt-5">
+                    <div class="row pt-3">
+                        <div class="col-sm">
+                        <div class="text-center text-white">
+                            <h6>Wind mph</h6>
+                            <h6>{{time.wind_mph}}</h6>
+                        </div>
+                        </div>
+
+                        <div class="col-sm">
+                            <div class="text-center text-white">
+                            <h6>Wind kph</h6>
+                            <h6>{{time.wind_kph}}</h6>
+                            </div>
+                        </div>
+
+                        <div class="col-sm">
+                            <div class="text-center text-white">
+                            <h6>Wind degree</h6>
+                            <h6>{{time.wind_degree}}</h6>
+                            </div>
+                        </div>
+
+                        <div class="col-sm">
+                            <div class="text-center text-white">
+                            <h6>Wind dir</h6>
+                            <h6>{{time.wind_dir}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {%endfor%}
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

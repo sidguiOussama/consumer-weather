@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+   
+    <form method="POST" action="/forecast">
+        <div class="input-group mb-3">
+            <input type="text" name="name" id="name" class="form-control" placeholder="Marseille" value="Marseille" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <input type="submit" class="btn btn-dark" value="search" />
+            </div>
+        </div>
+    </form>
+
+    {% if name %}
+        <div class="mt-5">
+            <div class="row row-cols-1 row-cols-md-2">
+                {%for foracastd in name.forecast.forecastday %}
+                <div class="col mb-4">
+                    <div class="card rounded bg-light">
+                        <div class="row mt-2">
+                            <div class="col-4"> 
+                                <div class="m-1 text-center">
+                                    <img style="width: 70%;" src={{ foracastd.day.condition.icon }} >
+                                </div>
+                            
+                            </div>
+                            
+                            <div class="col-6">
+                                <div class="text-center">
+                                    <h5 class="text-primary">{{ name.location.name }} </h5>
+                                    <h1 class="text-primary">{{ foracastd.day.avgtemp_c}} °C</h1>
+                                    <p class="text-dark">{{ name.location.region }}</p>
+                                    <p class="text-dark">{{ name.location.country }}</p>
+                                    <p class="text-dark">{{ foracastd.date }}</p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="bg-dark mt-5">
+                            <div class="row pt-3">
+                                <div class="col-sm">
+                                <div class="text-center text-white">
+                                    <h6>Max °C</h6>
+                                    <h6>{{ foracastd.day.maxtemp_c}}</h6>
+                                </div>
+                                </div>
+        
+                                <div class="col-sm">
+                                    <div class="text-center text-white">
+                                    <h6>Max °F</h6>
+                                    <h6>{{ foracastd.day.maxtemp_f}}</h6>
+                                    </div>
+                                </div>
+        
+                                <div class="col-sm">
+                                    <div class="text-center text-white">
+                                    <h6>Min °C</h6>
+                                    <h6>{{ foracastd.day.mintemp_c}}</h6>
+                                    </div>
+                                </div>
+        
+                                <div class="col-sm">
+                                    <div class="text-center text-white">
+                                    <h6>Min °F</h6>
+                                    <h6>{{ foracastd.day.mintemp_f}}</h6>
+                                    </div>
+                                </div>
+                                <div class="col-sm m-2">
+                                    <form method="POST" action="/forecast/{{ name.location.name }}/{{foracastd.date}}">
+                                        <div class="input-group mb-3">
+                                              <input type="submit" class="btn btn-success" value="More Details" />
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+    {% endif %}
+    
+{% endblock %}

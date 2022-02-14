@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+   
+    <form method="POST" action="/current">
+        <div class="input-group mb-3">
+            <input type="text" name="name" id="name" class="form-control" placeholder="Marseille" value="Marseille" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <input type="submit" class="btn btn-dark" value="search" />
+            </div>
+        </div>
+    </form>
+
+    
+    {% if name %}
+    <div class="mt-5">
+        <div class="row">
+            <div class="col mb-4">
+                <div class="card rounded bg-light">
+                    <div class="row mt-2">
+                        <div class="col-4"> 
+                            <div class="m-1 text-center">
+                                <img style="width: 70%;" src={{ name.current.condition.icon }} >
+                            </div>
+                        
+                        </div>
+                        
+                        <div class="col-6">
+                            <div class="text-center">
+                                <h5 class="text-primary">{{ name.location.name }} </h5>
+                                <h1 class="text-primary">{{ name.current.temp_c}} °C</h1>
+                                <p class="text-dark">{{ name.location.region }}</p>
+                                <p class="text-dark">{{ name.location.country }}</p>
+                                <p class="text-dark">{{ name.location.localtime }}</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="bg-dark mt-5">
+                        <div class="row pt-3">
+                                
+                            <div class="col-sm">
+                                <div class="text-center text-white">
+                                <h6>wind_mph</h6>
+                                <h6>{{ name.current.wind_mph}}</h6>
+                                </div>
+                            </div>
+    
+                            <div class="col-sm">
+                                <div class="text-center text-white">
+                                <h6>wind_kph</h6>
+                                <h6>{{ name.current.wind_kph}}</h6>
+                                </div>
+                            </div>
+
+                            <div class="col-sm">
+                                <div class="text-center text-white">
+                                <h6>wind_degree</h6>
+                                <h6>{{ name.current.wind_degree}}</h6>
+                                </div>
+                            </div>
+    
+                            <div class="col-sm">
+                                <div class="text-center text-white">
+                                <h6>wind_dir</h6>
+                                <h6>{{ name.current.wind_dir}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="d-flex justify-content-center mt-5">
+        <div class="card col-4 shadow">
+            <div class="text-center bg-light">
+                <img style="width: 50%;" src={{ name.current.condition.icon }} >
+            </div>
+            
+            <div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ name.location.name }}</h5>
+                    <p class="card-text">{{ name.location.region }}</p>
+                    <p class="card-text">{{ name.location.country }}</p>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item"></li>
+                    <li class="list-group-item"> {{ name.current.temp_c }} C°</li>
+                    <li class="list-group-item"> {{ name.current.temp_f }} F°</li>
+                  </ul>
+            </div>
+           
+        </div>
+    </div>
+    -->
+
+    {% endif %}
+    
+{% endblock %}
